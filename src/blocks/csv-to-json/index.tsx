@@ -7,6 +7,8 @@ export default function (props: FileBlockProps) {
     ? getLanguageFromFilename(context.path)
     : "N/A";
 
+  const json = convertCsvToJson(content);
+
   return (
     <div className="Box m-4">
       <div className="Box-header">
@@ -15,17 +17,28 @@ export default function (props: FileBlockProps) {
         </h3>
       </div>
       <div className="Box-body">
-        Metadata example: this button has been clicked{" "}
-        <button
-          className="btn"
-          onClick={() =>
-            onUpdateMetadata({ number: (metadata.number || 0) + 1 })
-          }
-        >
-          {metadata.number || 0} times
-        </button>
-        <pre className="mt-3 p-3">{content}</pre>
+        <pre className="mt-3 p-3">{JSON.stringify(json, null, 2)}</pre>
       </div>
     </div>
   );
+}
+
+// convert csv content to json
+const convertCsvToJson = (csv: string) => {
+  const lines = csv.split("\n");
+  const headers = lines[0].split(",");
+  const json = lines
+    .slice(1)
+    .map((line) => {
+      const values = line.split(",");
+      return headers.reduce(
+        (obj: any, header, index) => ({
+          ...obj,
+          [header]: values[index],
+        }),
+        {}
+      );
+    });
+
+  return json;
 }

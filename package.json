@@ -20,25 +20,14 @@
   "blocks": [
     {
       "type": "file",
-      "id": "file-block",
-      "title": "Example File Block",
-      "description": "A basic file block",
-      "entry": "/src/blocks/example-file-block/index.tsx",
+      "id": "csv-to-json",
+      "title": "Csv to Json converter",
+      "description": "A simple block to convert csv files to json",
+      "entry": "/src/blocks/csv-to-json/index.tsx",
       "extensions": [
-        "*"
+        "csv"
       ],
-      "example_path": "https://github.com/facebook/react/blob/main/packages/react-dom/index.js"
-    },
-    {
-      "type": "folder",
-      "id": "folder-block",
-      "title": "Example Folder Block",
-      "description": "A basic folder block",
-      "entry": "/src/blocks/example-folder-block/index.tsx",
-      "extensions": [
-        "*"
-      ],
-      "example_path": "https://github.com/githubocto/flat"
+      "example_path": "https://github.com/githubnext/blocks-tutorial/blob/main/data.csv"
     }
   ],
   "dependencies": {
